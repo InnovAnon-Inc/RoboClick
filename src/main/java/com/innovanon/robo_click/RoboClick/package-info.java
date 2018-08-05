@@ -5,4 +5,4 @@
  * @author gouldbergstein
  *
  */
-package com.innovanon.robo_click;
+package com.innovanon.robo_click.RoboClick;

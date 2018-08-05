@@ -1,13 +1,30 @@
 package com.innovanon.robo_click.RoboClick;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+
 /**
  * Hello world!
- *
+ * @author gouldbergstein
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+	/**
+	 * @param args
+	 * @throws AWTException
+	 */
+	public static void main(String[] args) throws AWTException {
+		// TODO Auto-generated method stub
+		Robot robot = new Robot();
+
+		while (true) {
+			robot.delay(1000 * 30);
+			System.out.println("press button");
+			robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+			robot.delay(500);
+			robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+			System.out.println("release button");
+		}
+	}
 }
