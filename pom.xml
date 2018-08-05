@@ -8,18 +8,173 @@
   <packaging>jar</packaging>
 
   <name>RoboClick</name>
-  <url>http://maven.apache.org</url>
+  <url>https://t.me/BTC_Faucet_bot?start=551213798</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<targetJDK>${java.version}</targetJDK>
+		<maven.compiler.source>${targetJDK}</maven.compiler.source>
+		<maven.compiler.target>${targetJDK}</maven.compiler.target>
+		<targetJdk>${targetJDK}</targetJdk>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+		<version-plugin-aspectj>1.11</version-plugin-aspectj>
+
+		<org.aspectj.version>${version-plugin-aspectj}</org.aspectj.version>
+		<!-- <aspectjVersion>1.9.1</aspectjVersion> -->
+		<aspectjVersion>${java.version}.1</aspectjVersion>
+		<org.aspectj.version>${aspectjVersion}</org.aspectj.version>
+		<mavenVersion>3.5.4</mavenVersion>
+		<changesPluginVersion>2.12.1</changesPluginVersion>
+		
+		<dropbox.path>file:///opt/files/Dropbox/mvn-repo</dropbox.path>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj.version}</version>
+			<!-- <scope>runtime</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>${version-plugin-aspectj}</version>
+				<configuration>
+					<source>${targetJdk}</source>
+					<target>${targetJdk}</target>
+					<complianceLevel>${targetJdk}</complianceLevel>
+					<verbose>true</verbose>
+					<showWeaveInfo>true</showWeaveInfo>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<!-- Ensure aspectj tools version used by compiler is the same version 
+						used as dependency. Avoids warning -->
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${org.aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			
+			 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:git:https://github.com/InnovAnon-Inc/${project.artifactId}}.git</connection>
+		<developerConnection>scm:git:git@github.com:InnovAnon-Inc/${project.artifactId}.git</developerConnection>
+		<url>https://github.com/InnovAnon-Inc/${project.artifactId}</url>
+		<tag>HEAD</tag>
+	</scm>
+	<repositories>
+    <repository>
+        <id>localDropbox</id>
+        <url>${dropbox.path}</url>
+    </repository>
+</repositories>
+	<distributionManagement>
+ <repository>
+        <id>localDropbox</id>
+        <url>${dropbox.path}</url>
+    </repository>
+
+<!-- 
+		<repository>
+			<id>bintray-innovanon-inc-Simon</id>
+			<name>innovanon-inc-Simon</name>
+			<url>https://api.bintray.com/maven/innovanon-inc/Simon/Simon/;publish=1</url>
+		</repository>
+-->
+		<!-- <repository> <id>bintray-innovanon-inc-Simon</id> <name>InnovAnon-Inc-Simon</name> 
+			<url>https://api.bintray.com/maven/innovanon-inc/Simon/Simon/</url> <uniqueVersion>false</uniqueVersion> 
+			</repository> -->
+		<!-- <snapshotRepository> <id>bintray-innovanon-inc-Simon</id> <name>InnovAnon-Inc-Simon</name> 
+			<url>https://api.bintray.com/maven/innovanon-inc/Simon/Simon/</url> <uniqueVersion>false</uniqueVersion> 
+			</snapshotRepository> -->
+	</distributionManagement>
+
+
+
+
+
+
+
+
+
+
+
+
+	<profiles>
+		<profile>
+			<id>default-profile</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<file>
+					<exists>${java.home}/../lib/tools.jar</exists>
+				</file>
+			</activation>
+			<properties>
+				<toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+			</properties>
+		</profile>
+		<profile>
+			<id>mac-profile</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<file>
+					<exists>${java.home}/../Classes/classes.jar</exists>
+				</file>
+			</activation>
+			<properties>
+				<toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
+			</properties>
+		</profile>
+		<profile>
+			<id>whatever-profile</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>${java.home}/lib/tools.jar</exists>
+				</file>
+			</activation>
+			<properties>
+				<toolsjar>${java.home}/lib/tools.jar</toolsjar>
+			</properties>
+		</profile>
+
+	</profiles>
 </project>
+
+
+
