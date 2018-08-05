@@ -37,6 +37,12 @@
 			<version>${org.aspectj.version}</version>
 			<!-- <scope>runtime</scope> -->
 		</dependency>
+		
+		<dependency>
+			<groupId>com.innovanon.simon</groupId>
+			<artifactId>Simon</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
