@@ -38,9 +38,11 @@ public class RoboClick {
 	}
 	
 	public void doClick (int delay_before_press, int delay_before_release) {
+		System.out.printf("pressing  button in: %dms%n", delay_before_press);
 		robot.delay(delay_before_press);
-		System.out.println("press button");
+		//System.out.println("press button");
 		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+		System.out.printf("releasing button in: %dms%n", delay_before_release);
 		robot.delay(delay_before_release);
 		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 		//System.out.println("release button");
